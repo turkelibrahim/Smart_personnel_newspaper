@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), ui-serif, Georgia, serif;
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#090b0f] text-slate-100 antialiased;
+    background-image:
+      radial-gradient(circle at 16% -8%, rgba(56, 189, 248, 0.12), transparent 34%),
+      radial-gradient(circle at 88% 8%, rgba(16, 185, 129, 0.08), transparent 30%),
+      linear-gradient(180deg, #11151b 0%, #080b10 44%, #0d1117 100%);
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.35);
+    color: #ffffff;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply outline-none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.78), 0 0 0 5px rgba(15, 23, 42, 0.92);
+    border-radius: 1rem;
+  }
+}
+
+@layer utilities {
+  .surface-panel {
+    @apply rounded-[24px] border border-white/10 bg-[#111820]/78 shadow-[0_22px_70px_rgba(0,0,0,0.34)] backdrop-blur-xl;
+  }
+
+  .surface-panel-strong {
+    @apply rounded-[28px] border border-white/10 bg-[#151b24]/88 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl;
+  }
+
+  .surface-subtle {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04];
+  }
+
+  .surface-card {
+    @apply rounded-[22px] border border-white/10 bg-[#121923] shadow-[0_18px_52px_rgba(0,0,0,0.28)] transition-all duration-300;
+  }
+
+  .section-heading {
+    @apply font-serif text-2xl font-black tracking-tight text-white md:text-3xl;
+  }
+
+  .ui-input {
+    @apply rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-white outline-none transition-all duration-200 placeholder:text-slate-500 focus:border-sky-300/70 focus:bg-white/[0.1] focus:ring-4 focus:ring-sky-400/10;
+  }
+
+  .ui-chip {
+    @apply rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-300 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus-visible:border-sky-300/70 focus-visible:text-white;
+  }
+
+  .ui-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.24em] text-slate-300;
+  }
+
+  .ui-button-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-sky-300 px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-slate-950 shadow-[0_18px_50px_rgba(56,189,248,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617];
+  }
+
+  .ui-button-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.18em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-sky-200/35 hover:bg-white/[0.1] focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617];
+  }
+
+  .ui-kicker {
+    @apply text-[10px] font-black uppercase tracking-[0.28em] text-sky-300;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .article-prose {
+    @apply text-[1.02rem] leading-8 text-slate-300 md:text-[1.06rem] md:leading-9;
+  }
+
+  .article-prose p + p {
+    margin-top: 1.35rem;
+  }
+
+  .article-prose h2,
+  .article-prose h3 {
+    @apply font-serif font-black text-white;
+  }
+
+  .newspaper-prose {
+    @apply text-base leading-8 text-slate-300;
+  }
+
+  .newspaper-prose p + p {
+    margin-top: 1rem;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  header.fixed,
+  .print-toolbar,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  .print-newspaper {
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .print-section,
+  .print-card,
+  .print-card-grid > * {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-headline {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .print-headline-image {
+    max-height: 78mm !important;
+  }
+
+  .print-headline-image img,
+  .print-card img {
+    max-height: 62mm !important;
+    object-fit: cover !important;
+  }
+
+  .print-card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8mm !important;
+  }
+
+  .print-card,
+  .news-card-print {
+    background: #ffffff !important;
+    border: 1px solid #d6d6d6 !important;
+    color: #111111 !important;
+  }
+
+  .news-card-print * {
+    color: #111111 !important;
+  }
+
+  .news-card-print .print-muted {
+    color: #555555 !important;
+  }
+
+  .news-card-print .print-reason {
+    background: #f6f6f6 !important;
+    border: 1px solid #dddddd !important;
+    color: #111111 !important;
+  }
+
+  .news-card-print .print-image-overlay {
+    display: none !important;
+  }
+
+  .glass-panel {
+    background: #ffffff !important;
+    border: 1px solid #d6d6d6 !important;
+  }
+}

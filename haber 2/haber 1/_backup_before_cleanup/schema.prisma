@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String             @id @default(uuid())
+  name               String?
+  email              String?            @unique
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  
+  preference         UserPreference?
+  newspaperEditions  NewspaperEdition[]
+  readingEvents      ReadingEvent[]
+  savedArticles      SavedArticle[]
+}
+
+model UserPreference {
+  id                     String   @id @default(uuid())
+  userId                 String   @unique
+  profession             String?
+  goals                  String?  // JSON string array
+  interests              String?  // JSON string array
+  blockedTopics          String?  // JSON string array
+  preferredReadingDepth  String?  // e.g. "quick", "balanced", "deep"
+  preferredTone          String?
+  location               String?
+  dailyReadingTime       Int?     // in minutes
+  notificationPreference String?
+  contentSensitivity     String?  // JSON string array
+  sourcePreference       String?  // JSON string array
+  languagePreference     String?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Source {
+  id          String    @id @default(uuid())
+  name        String
+  url         String
+  type        String?
+  country     String?
+  language    String?
+  trustScore  Float     @default(50.0)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  articles    Article[]
+}
+
+model Article {
+  id              String   @id @default(uuid())
+  title           String
+  summary         String?
+  content         String?
+  imageUrl        String?
+  url             String
+  category        String?
+  tags            String?  // JSON string array
+  sourceId        String
+  publishedAt     DateTime
+  importanceScore Float    @default(50.0)
+  readingTime     Int?     // estimated reading time in minutes
+  sentiment       Float?   // scale from -1.0 to 1.0
+  location        String?
+  trustScore      Float    @default(50.0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  source          Source   @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+}
+
+model ArticleCluster {
+  id             String   @id @default(uuid())
+  title          String
+  mainArticleId  String
+  articleIds     String   // JSON string array of IDs
+  topic          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model NewspaperEdition {
+  id             String   @id @default(uuid())
+  userId         String
+  title          String
+  date           DateTime
+  editionType    String   // e.g., "morning", "evening"
+  sections       String   // JSON string structure describing sections
+  articleIds     String   // JSON string array of included article IDs
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ReadingEvent {
+  id             String   @id @default(uuid())
+  userId         String
+  articleId      String
+  eventType      String   // e.g., "view", "read", "like"
+  createdAt      DateTime @default(now())
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SavedArticle {
+  id             String   @id @default(uuid())
+  userId         String
+  articleId      String
+  createdAt      DateTime @default(now())
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

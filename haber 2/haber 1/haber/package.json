@@ -1,0 +1,45 @@
+{
+  "name": "temp_next_app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:inspect": "tsx scripts/inspectDatabaseTarget.ts",
+    "db:inspect:root": "tsx scripts/inspectDatabaseTarget.ts --url file:./dev.db --label root-dev",
+    "db:inspect:prisma": "tsx scripts/inspectDatabaseTarget.ts --url file:./prisma/dev.db --label prisma-dev",
+    "preferences:normalize": "tsx scripts/normalizePreferences.ts",
+    "personal-editions:check-duplicates": "tsx scripts/checkPersonalEditionDuplicates.ts",
+    "personal-editions:cleanup-duplicates": "tsx scripts/cleanupPersonalEditionDuplicates.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "date-fns": "^4.1.0",
+    "entities": "^8.0.0",
+    "next": "16.2.6",
+    "node-cache": "^5.1.2",
+    "p-limit": "^7.3.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "rss-parser": "^3.13.0",
+    "slugify": "^1.6.9",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}
