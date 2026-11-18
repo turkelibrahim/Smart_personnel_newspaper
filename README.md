@@ -1,66 +1,36 @@
-# Smart Personnel Newspaper (Akıllı Personel Gazetesi)
+# 📰 Smart Personnel Newspaper — Kişiselleştirilmiş Dijital Gazete
 
-Bu proje, personel için özelleştirilmiş, AI (Yapay Zeka) destekli bir haber portalıdır. Haberleri otomatik olarak çeker, sınıflandırır ve modern bir arayüz ile sunar.
+<p align="left">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/NLP%20%26%20RecSys-10B981?style=flat-square" alt="NLP & RecSys" />
+  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white" alt="Prisma" />
+</p>
 
-## 🚀 Özellikler
+An AI-assisted personalized news aggregation and digital newspaper platform that curates daily editions based on reader interest profiles, reading habits, and multi-source NLP categorization.
 
-- **AI Haber Sınıflandırma:** Haberleri kategorilerine göre (Gündem, Teknoloji, Ekonomi vb.) otomatik olarak ayırır.
-- **Otomatik Haber Çekme:** RSS ve diğer kaynaklardan güncel haberleri toplar.
-- **Modern Arayüz:** Next.js ve Tailwind CSS kullanılarak oluşturulmuş, kullanıcı dostu tasarım.
-- **Kolay Başlatma:** Windows kullanıcıları için tek tıkla başlatma betiği.
+![Smart Personnel Newspaper Dashboard](./preview.webp)
 
-## 🛠️ Kurulum ve Çalıştırma
+---
 
-### Gereksinimler
+## ✨ Key Capabilities
 
-- [Node.js](https://nodejs.org/) (v18 veya üzeri önerilir)
-- [Git](https://git-scm.com/)
+- **Multi-Source News Ingestion & Deduplication:** Automated RSS/crawler pipelines with source citation tracking and duplicate cluster detection.
+- **NLP Categorization & Explainable Recommendations:** Multi-label topic classification (`Gündem`, `Finans`, `Yapay Zekâ`, `Eğitim`, `Kültür-Sanat`) with match-score explanations (e.g., `%76 Sana Özel`).
+- **Reader Persona & Pacing Modes:** Tailored daily feeds for morning, evening, night, or mixed reading styles.
+- **Trending Story Clustering & Print-Ready PDF Export:** Groups related coverage across sources and exports A4/tabloid digital newspaper editions.
 
-### Hızlı Başlangıç (Windows)
+---
 
-Proje dizinindeki `baslat.bat` dosyasına çift tıklayarak uygulamayı otomatik olarak başlatabilirsiniz. Bu betik:
-1. Gerekli paketleri yükler (`npm install`).
-2. Geliştirme sunucusunu başlatır (`npm run dev`).
+## 🏗️ System Architecture
 
-### Manuel Çalıştırma
+1. **Ingestion Layer:** Scheduled crawlers & RSS connectors normalize articles and remove near-duplicates.
+2. **NLP & Ranking Engine:** Computes semantic similarity, category weights, and user-interest match scores.
+3. **Web Application & PDF Edition Service:** Delivers the interactive newspaper dashboard, saved bookmarks, calendar events, and downloadable PDF editions.
 
-Eğer terminal üzerinden çalıştırmak isterseniz:
+---
 
-```bash
-# Proje dizinine gidin
-cd "haber 2/haber 1/haber"
+## 👤 Author
 
-# Bağımlılıkları yükleyin
-npm install
-
-# Uygulamayı başlatın
-npm run dev
-```
-
-Uygulama varsayılan olarak `http://localhost:3000` adresinde çalışacaktır.
-
-## ⚙️ Yapılandırma (Environment Variables)
-
-Projenin çalışması için bazı ortam değişkenlerinin ayarlanması gerekir. 
-
-1. `haber 2/haber 1/haber/` dizinine gidin.
-2. `.env.example` dosyasının adını `.env` olarak değiştirin.
-3. İçindeki değişkenleri kendi anahtarlarınızla doldurun:
-
-```env
-DATABASE_URL="file:./prisma/dev.db"
-OPENAI_API_KEY=your_openai_key_here
-GOOGLE_AI_API_KEY=your_google_key_here
-AI_PROVIDER=google # veya openai, anthropic, rule-based
-AI_ENABLED=true
-```
-
-## 📂 Proje Yapısı
-
-- `haber 2/haber 1/haber`: Ana uygulama kodları (Next.js, Prisma, API).
-- `baslat.bat`: Windows için hızlı başlatma betiği.
-- `Editor 2012 (1).pdf` & `Smart Personnel Newspaper.docx`: Proje dökümantasyonu.
-
-## 📝 Lisans
-
-Bu proje MIT lisansı ile lisanslanmıştır.
+**İbrahim Türkel** — [ibrahimturkel.com.tr](https://ibrahimturkel.com.tr) · [GitHub](https://github.com/turkelibrahim) · [LinkedIn](https://www.linkedin.com/in/ibrahim-t%C3%BCrkel-065283261/)
